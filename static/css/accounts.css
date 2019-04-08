@@ -1,0 +1,17 @@
+body {
+  background-image: url(../img/signup.jpg);
+}
+
+.logo {
+  font-family: 'PT+Serif',cursive;
+  font-size: 35px;
+}
+
+.logo a {
+  color: rgba(0,0,0);
+}
+
+.logo a:hover,
+.logo a:active {
+  text-decoration: none;
+}
