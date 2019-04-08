@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/associate.css' %}">
+
+
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Our Associates</li>
+{% endblock %}
+
+{% block content %}
+<form method="GET" >
+ <div class="md-form mt-0">
+   <input class="form-control" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search" aria-label="Search">
+ </div>
+</form>
+<br>
+  <div class="mb-4">
+    <a href="{% url 'associate_new' %}" class="btn btn-primary">Add new record?</a>
+  </div>
+
+
+  <table class="table">
+
+    <thead class="thead-inverse">
+      <tr>
+        <th>Associate</th>
+        <th>City</th>
+        <th>State</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for associate in associates %}
+        <tr>
+          <td class="align-middle"><a href="{% url 'associate_details' associate.pk %}">{{ associate.First_Name|add:" "|add:associate.Last_Name }}</a></td>
+          <td class="align-middle">{{ associate.City }}</td>
+          <td class="align-middle">{{ associate.State }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+{% if associates.has_other_pages %}
+  <ul class="pagination">
+    	{% if associates.has_previous %}
+      	<li><a href="?page={{ associates.previous_page_number }}
+	{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a></li>
+    	{% else %}
+      	<li class="disabled"><span>&laquo;</span></li>
+    	{% endif %}
+
+    	{% for i in associates.paginator.page_range %}
+      		{% if associates.number == i %}
+        		<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      		{% else %}
+        		<li><a href="?page={{ i }}
+			{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+      		{% endif %}
+    	{% endfor %}
+    
+	{% if associates.has_next %}
+      	<li><a href="?page={{ associates.next_page_number }}
+	{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a></li>
+    	{% else %}
+      	<li class="disabled"><span>&raquo;</span></li>
+    	{% endif %}
+  </ul>
+{% endif %}
+
+{% endblock %}
+

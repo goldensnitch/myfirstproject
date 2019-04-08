@@ -1,0 +1,31 @@
+{% extends 'base3.html' %}
+
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'associate' %}">Associates</a></li>
+  <li class="breadcrumb-item active">{{ associate.First_Name|add:" "|add:associate.Last_Name }}</li>
+{% endblock %}
+
+{% block content %}
+
+  <div class="mb-4">
+    <a href="{% url 'eh_dependant_new' associate.pk %}" class="btn btn-primary">Add new dependant?</a>
+  </div>
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Name</th>
+        <th>Relationship</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for Dependant in associate.Dependants.all %}
+        <tr>
+          <td class="align-middle"><a href="{% url 'eh_dependant_info' associate.pk Dependant.pk %}">{{ Dependant.Name }}</a></td>
+          <td>{{ Dependant.Relationship }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

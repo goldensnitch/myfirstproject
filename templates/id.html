@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/idcard.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+
+
+
+     <div class="container">
+	<br> <hr>
+            {%  for associate in associates %}
+                {% if forloop.counter0|divisibleby:4 %} <div class="row text-center"> {%  endif %}
+                  <div class="col-md-3">
+                      <div class="card">
+
+                          <div class="card-content">
+				<br><br><br><br><br><br><br><br><br>
+                              <hr>
+                              <h5>{{ associate.Display_Name }}</h5>
+                              <h6>City - {{ associate.City }}</h6>
+                              <h6>State - {{ associate.State }}</h6>
+                              <br>
+                          </div><!-- card content -->
+                      </div><!-- card -->
+                  </div><!-- col-md-4 -->
+            {%  if forloop.counter|divisibleby:4 or forloop.last %}</div><!-- row closing --><hr>{%  endif %}
+            {%  endfor %}
+         </div><!-- container -->

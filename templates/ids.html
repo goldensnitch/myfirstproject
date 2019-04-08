@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/idcard1.css' %}">
+
+
+
+
+ {%  for associate in associates %}
+  	<table border='2'>
+  	<tr><th>Photo</th></tr>
+  	<tr><td>{{ associate.Display_Name }}</td></tr>
+  	<tr><td>City - {{ associate.City }}</td></tr>
+  	<tr><td>State - {{ associate.State }}</td></tr>
+  	</table>
+  	<br>
+ {%  endfor %}

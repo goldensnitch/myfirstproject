@@ -1,0 +1,50 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-sm-3 pr-1">
+  		<div class="card text-black bg-white mb-3" style="max-width: 18rem;">  
+  	 	   <div class="card-header bg-warning"><h6>Our Associates</h6></div>
+		      <div class="card-body ">
+    		      <h7 class="card-title">Tasks related to people</h7>
+    		      <p class="card-text"><small><a href="{% url 'associate' %}">Associate Directory</a><br><a href="{% url 'associate_new' %}">Add an associate</a></small></p>
+  		      </div>
+		</div>
+		<div class="card text-black bg-white mb-3" style="max-width: 18rem;">
+  		   <div class="card-header bg-warning"><h6>Projects</h6></div>
+		      <div class="card-body">
+    		      <h7 class="card-title">Tasks related to projects</h7>
+    		      <p class="card-text"><small><a href="{% url 'client' %}">Client Directory</a><br><a href="{% url 'client_new' %}">Add a client</a></small></p>
+                      </div>
+                </div>	
+	</div>
+	<div class="col-sm-6 pr-1">
+  		<div class="card text-black bg-white mb-3" >  
+  	 	   <div class="card-header bg-warning"><h6>Charts</h6></div>
+		      <div class="card-body">
+    		      <h7 class="card-title">Tasks related to charts</h7>
+    		      <p class="card-text"><small>Chart</small></p>
+  		      </div>
+		</div>
+	</div>
+	<div class="col-sm-3 pr-1">
+  		<div class="card text-black bg-white mb-3" style="max-width: 18rem;">  
+  	 	   <div class="card-header bg-warning"><h6>Reports</h6></div>
+		      <div class="card-body">
+    		      <h7 class="card-title">Tasks related to reports</h7>
+    		      <p class="card-text"><small><a href="{% url 'AssociateExport_csv' %}">Associate Data Extract (csv)</a><br><a href="{% url 'AssociateExport_xls' %}">Associate Data Extract (xls)</a></small></p>	    
+  		      </div>
+		</div>
+		<div class="card text-black bg-white mb-3" style="max-width: 18rem;">  
+  	 	   <div class="card-header bg-warning"><h6>Documents</h6></div>
+		      <div class="card-body">
+    		      <h7 class="card-title">Tasks related to documents</h7>
+    		      <p class="card-text"><small><a href="{% url 'IDcard' %}">Print ID Cards</a></small></p>
+  		      </div>
+		</div>
+	</div>
+ </div>
+
+{% endblock %}
+

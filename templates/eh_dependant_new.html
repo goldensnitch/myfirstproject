@@ -1,0 +1,17 @@
+{% extends 'base3.html' %}
+
+{% block title %}Edit Associate Details{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'associate' %}">Associates</a></li>
+  <li class="breadcrumb-item active">{{ associate.First_Name|add:" "|add:associate.Last_Name }}</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Save?</button>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base3.html' %}
+
+{% block title %}Edit Dependant Details{% endblock %}
+
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Save?</button>
+  </form>
+<br>
+  <div class="mb-4">
+    <a href="{% url 'eh_dependant_list' dependant.Associate.pk %}" class="btn btn-primary">Back to Dependants?</a>
+  </div>
+{% endblock %}
