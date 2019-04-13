@@ -27,7 +27,7 @@ from boards.views import GeneratePDF
 
 
 urlpatterns = [
-   url(r'^$', views.home, name='home'),
+   url(r'^$', auth_views.LoginView.as_view(template_name='newlogin.html'), name='newhome'),
    url(r'^signup/$', accounts_views.signup, name='signup'),
 
    url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -63,6 +63,17 @@ urlpatterns = [
 
    url(r'^pdf/IDCardhtml/$', views.idcard_html, name='idcard_html'),
    url(r'^pdf/IDCard/$', GeneratePDF.as_view(), name='IDcard'),
+
+
+   url(r'^newlogin/$', auth_views.LoginView.as_view(template_name='newlogin.html'), name='newlogin'),
+   url(r'^newsignup/$', accounts_views.newsignup, name='newsignup'),
+
+   url(r'^charts/$', views.charts, name='charts'),
+   url(r'^forms/$', views.forms, name='forms'),
+   url(r'^index/$', views.index, name='index'),
+   url(r'^fancylogin/$', views.fancylogin, name='fancylogin'),
+   url(r'^tables/$', views.tables, name='tables'),
+   url(r'^register/$', views.register, name='register'),
 
 
    url(r'^admin/', admin.site.urls),

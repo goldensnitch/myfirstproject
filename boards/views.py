@@ -79,6 +79,24 @@ def new_topic(request, pk):
 def aarya(request):
     return render(request, 'aarya.html')
 
+def charts(request):
+    return render(request, 'charts.html')
+
+def index(request):
+    return render(request, 'index.html')
+
+def tables(request):
+    return render(request, 'tables.html')
+
+def register(request):
+    return render(request, 'register.html')
+
+def fancylogin(request):
+    return render(request, 'fancylogin.html')
+
+def forms(request):
+    return render(request, 'forms.html')
+
 
 @login_required
 def associate(request):

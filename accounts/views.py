@@ -15,3 +15,15 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
+def newsignup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('aarya')
+    else:
+        form = SignUpForm()
+    return render(request, 'newsignup.html', {'form': form})
+
+
