@@ -92,6 +92,8 @@ urlpatterns = [
    url(r'^tables/$', views.tables, name='tables'),
    url(r'^register/$', views.register, name='register'),
 
+   url(r'^tables/associate/(?P<pk>\d+)/$', views.tables_associate.as_view(), name='tables_associate'),
+
 
    url(r'^admin/', admin.site.urls),
 ]

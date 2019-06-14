@@ -34,6 +34,13 @@
 				</div>
 			</div>
 			<div class="card-body">
+
+				{% if form.errors %}
+				<div class="d-flex justify-content-center small font-italic links">
+					Your username and password didn't match. Please try again.
+				</div>
+				{% endif %}
+
 				<form method="post" novalidate>
 					{% csrf_token %}
 					<div class="input-group form-group">

@@ -89,7 +89,8 @@ def index(request):
     return render(request, 'index.html')
 
 def tables(request):
-    return render(request, 'tables.html')
+    associates = Associate.objects.all()
+    return render(request, 'tables.html', {'associates': associates})
 
 def register(request):
     return render(request, 'register.html')
@@ -359,3 +360,14 @@ class client_details(LoginRequiredMixin, UpdateView):
         return redirect('client_details', self.object.pk)
 
 
+class tables_associate(LoginRequiredMixin, UpdateView):
+    model = Associate
+    form_class = AssociateDetailsForm
+    template_name = 'tables_associate.html'
+
+    def form_valid(self, form):
+        user = User.objects.first()
+        self.object = form.save(commit=False)
+        self.object.updated_by = user
+        self.object.save()
+        return redirect('tables_associate', self.object.pk)
