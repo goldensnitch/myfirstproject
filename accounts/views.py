@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
-from .forms import SignUpForm
+from .forms import SignUpForm, CaseInsensitiveUserCreationForm
 
 
 from django.contrib.auth.models import User
