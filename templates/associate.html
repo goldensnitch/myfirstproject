@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/associate.css' %}">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 
 
 
@@ -8,7 +10,29 @@
   <li class="breadcrumb-item active">Our Associates</li>
 {% endblock %}
 
+
 {% block content %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> This is a test message.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{ message.tags }} alert-dismissible rounded" role="alert">
+  <strong>Holy guacamole!</strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+
 <form method="GET" >
  <div class="md-form mt-0">
    <input class="form-control" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search" aria-label="Search">
@@ -20,13 +44,14 @@
   </div>
 
 
-  <table class="table">
+  <table class="table table-striped table-hover">
 
     <thead class="thead-inverse">
       <tr>
         <th>Associate</th>
         <th>City</th>
         <th>State</th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -36,6 +61,8 @@
           <td class="align-middle"><a href="{% url 'associate_details' associate.pk %}">{{ associate.First_Name|add:" "|add:associate.Last_Name }}</a></td>
           <td class="align-middle">{{ associate.City }}</td>
           <td class="align-middle">{{ associate.State }}</td>
+          <td class="align-middle"><a href="{% url 'associate_delete' associate.pk %}" class="btn btn-danger btn-sm">Delete</a></td>
+
         </tr>
       {% endfor %}
     </tbody>
@@ -68,6 +95,14 @@
     	{% endif %}
   </ul>
 {% endif %}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $('.alert-dismissible').show();
+    setTimeout(function(){ $('.alert').hide(); }, 5000);
+</script>
+
 
 {% endblock %}
 

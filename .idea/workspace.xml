@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7ab276d8-6c9e-4c38-af00-8f7f046a5b03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tables_associate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tables_associate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/boards/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/boards/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/associate.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/associate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/associate_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/associate_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/associate_new.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/associate_new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/eh_personal_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/eh_personal_info.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,19 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tables_associate.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/tables_associate.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="244" selection-start-line="244" selection-end-line="244" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boards/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="230">
+              <caret line="208" column="61" lean-forward="true" selection-start-line="208" selection-start-column="61" selection-end-line="208" selection-end-column="61" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -34,14 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boards/forms.py">
+      <file leaf-file-name="associate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/associate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="40" column="33" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="612">
+              <caret line="54" column="11" lean-forward="true" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -57,10 +52,18 @@
         <option value="$PROJECT_DIR$/templates/newlogin.html" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/templates/tables_associate.html" />
+        <option value="$PROJECT_DIR$/templates/associate_new.html" />
+        <option value="$PROJECT_DIR$/myproject/settings.py" />
+        <option value="$PROJECT_DIR$/myproject/urls.py" />
+        <option value="$PROJECT_DIR$/templates/associate_confirm_delete.html" />
+        <option value="$PROJECT_DIR$/templates/associate.html" />
+        <option value="$PROJECT_DIR$/templates/associate_details.html" />
+        <option value="$PROJECT_DIR$/templates/eh_personal_info.html" />
+        <option value="$PROJECT_DIR$/boards/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="533" />
     <option name="y" value="24" />
     <option name="width" value="1026" />
@@ -134,10 +137,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -160,6 +163,100 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/myproject/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#308#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boards/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="171" column="8" selection-start-line="171" selection-start-column="8" selection-end-line="171" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tables.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7072">
+          <caret line="416" selection-start-line="413" selection-end-line="416" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="60" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="60" />
+          <folding>
+            <element signature="e#308#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate_new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/urls.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boards/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2533">
+          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tables_associate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4148">
+          <caret line="244" selection-start-line="244" selection-end-line="244" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boards/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boards/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/tables_associate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4148">
@@ -180,9 +277,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="40" column="33" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -203,32 +297,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myproject/settings.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/boards/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/boards/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="40" column="33" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/tables_associate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="2057">
           <caret line="244" selection-start-line="244" selection-end-line="244" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8137">
+          <caret line="46" column="47" lean-forward="true" selection-start-line="46" selection-start-column="47" selection-end-line="46" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tables.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="416" selection-start-line="413" selection-end-line="416" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1173">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#308#317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate_new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myproject/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="54" column="11" lean-forward="true" selection-start-line="54" selection-start-column="11" selection-end-line="54" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/associate_confirm_delete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/eh_personal_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boards/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="73" column="12" lean-forward="true" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boards/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="208" column="61" lean-forward="true" selection-start-line="208" selection-start-column="61" selection-end-line="208" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
