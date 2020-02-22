@@ -25,8 +25,24 @@ from accounts import views as accounts_views
 
 from boards.views import GeneratePDF
 
+from django.urls import include
+from rest_framework import routers
+from boards.boards_api import AssociateViewSet, UserViewSet, GroupViewSet
+
+router=routers.DefaultRouter()
+router.register(r'associates_api', AssociateViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+
+
 
 urlpatterns = [
+
+   path('api/', include(router.urls)),
+   path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+
+
    url(r'^$', auth_views.LoginView.as_view(template_name='newlogin.html'), name='newhome'),
    url(r'^signup/$', accounts_views.signup, name='signup'),
 
@@ -96,4 +112,6 @@ urlpatterns = [
 
 
    url(r'^admin/', admin.site.urls),
+
+
 ]
