@@ -74,6 +74,7 @@ urlpatterns = [
    url(r'^associate/$', views.associate, name='associate'),
    url(r'^associate/new/$', views.associate_new, name='associate_new'),
    url(r'^associate/(?P<pk>\d+)/$', views.associate_details.as_view(), name='associate_details'),
+   url(r'^associate/delete/(?P<pk>\d+)/$', views.AssociateDelete.as_view(), name='associate_delete'),
 
    url(r'^client/$', views.client, name='client'),
    url(r'^client/new/$', views.client_new, name='client_new'),
