@@ -41,6 +41,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+
+from django.contrib import messages
+from django.template import RequestContext
+from django.contrib.messages.views import SuccessMessageMixin
+
 User = get_user_model()
 
 
@@ -134,8 +139,11 @@ def associate_new(request):
                 Associate.created_at = timezone.now()
                 Associate.updated_at = timezone.now()
                 Associate.save()
-
+                m = 'Associate {0} added successfully!'.format(Associate.Display_Name())
+                messages.add_message(request, messages.SUCCESS, m)
                 return redirect('associate')
+            else:
+                messages.warning(request, 'Please correct the error below.')
         else:
             form = NewAssociateForm()
         return render(request, 'associate_new.html', {'form': form})
@@ -164,6 +172,8 @@ class eh_personal_info(LoginRequiredMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.updated_by = user
         self.object.save()
+        m = 'Personal details for {0} updated successfully!'.format(self.object)
+        messages.add_message(self.request, messages.INFO, m)
         return redirect('eh_personal_info', self.object.pk)
 
 
@@ -191,6 +201,20 @@ class eh_idproof_info(LoginRequiredMixin, UpdateView):
         self.object.updated_by = user
         self.object.save()
         return redirect('eh_idproof_info', self.object.pk)
+
+
+class AssociateDelete(SuccessMessageMixin, DeleteView):
+    model = Associate
+    success_url = reverse_lazy('associate')
+    success_message = "Associate %s was deleted successfully"
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        messages.success(self.request, self.success_message % obj)
+        return super(AssociateDelete, self).delete(request, *args, **kwargs)
 
 
 @login_required
@@ -233,13 +257,8 @@ class eh_dependant_info(LoginRequiredMixin, UpdateView):
         return redirect('eh_dependant_list',pk=dependant.Associate.pk)
 
 
-
-
 def options(request):
     return render(request, 'options.html')
-
-
-
 
 
 def AssociateExport_csv(request):
@@ -309,7 +328,6 @@ class GeneratePDF(View):
                 response['Content-Disposition'] = content
             return response
         return HttpResponse("Not found")
-
 
 
 
