@@ -30,7 +30,7 @@ from rest_framework import routers
 from boards.boards_api import AssociateViewSet, UserViewSet, GroupViewSet
 
 router=routers.DefaultRouter()
-router.register(r'v1/associates_api', AssociateViewSet)
+router.register(r'v1/associates', AssociateViewSet)
 router.register(r'v1/users', UserViewSet)
 router.register(r'v1/groups', GroupViewSet)
 
