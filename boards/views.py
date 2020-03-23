@@ -9,11 +9,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect
 
-from .models import Board, Topic, Post, Associate, Dependant, Client
+from .models import Board, Topic, Post, Associate, Dependant, Client, Blog
 from django.utils import timezone
 from .forms import NewTopicForm, NewAssociateForm, AssociateDetailsForm
 from .forms import PersonalInfoForm, ContactInfoForm, IDProofInfoForm, DependantInfoForm
-from .forms import NewClientForm
+from .forms import NewClientForm, BlogCreateForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -45,6 +45,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.messages.views import SuccessMessageMixin
+
 
 User = get_user_model()
 
@@ -389,3 +390,99 @@ class tables_associate(LoginRequiredMixin, UpdateView):
         self.object.updated_by = user
         self.object.save()
         return redirect('tables_associate', self.object.pk)
+
+
+
+
+
+
+
+
+@login_required
+def blogcreatepost(request):
+    form = BlogCreateForm()
+    if request.method == 'POST':
+        form = BlogCreateForm(request.POST)
+        if form.is_valid():
+            Blog = form.save(commit=False)
+            Blog.created_by  = request.user
+            Blog.created_at = timezone.now()
+            Blog.updated_at = timezone.now()
+            Blog.save()
+
+            return redirect('blogmypostlist')
+    else:
+        form = BlogCreateForm()
+    return render(request, 'blog-create-post.html', {'form': form})
+
+
+def blogpostlist(request):
+    blogpost_list = Blog.objects.all().order_by('-created_at','Title')
+
+    query = request.GET.get('q')
+    if query:
+        blogpost_list = Blog.objects.filter( Q(Title__icontains=query) | Q(Details__icontains=query)).order_by('-created_at','Title')
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(blogpost_list, 5)
+    try:
+        blogposts = paginator.page(page)
+    except PageNotAnInteger:
+        blogposts = paginator.page(1)
+    except EmptyPage:
+        blogposts = paginator.page(paginator.num_pages)
+    return render(request, 'blog-post-list.html', {'blogposts': blogposts})
+
+
+def blogpost(request, slug):
+    post = get_object_or_404 (Blog, URL_Name=slug)
+    return render(request, 'blog-post.html', {'post':post})
+
+
+@login_required
+def blogmypostlist(request):
+    blogpost_list = Blog.objects.filter(created_by=request.user).order_by('-created_at','Title')
+
+    query = request.GET.get('q')
+    if query:
+        blogpost_list = Blog.objects.filter(created_by=request.user).filter( Q(Title__icontains=query) | Q(Details__icontains=query)).order_by('-created_at','Title')
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(blogpost_list, 5)
+    try:
+        blogposts = paginator.page(page)
+    except PageNotAnInteger:
+        blogposts = paginator.page(1)
+    except EmptyPage:
+        blogposts = paginator.page(paginator.num_pages)
+    return render(request, 'blog-my-post-list.html', {'blogposts': blogposts})
+
+
+class blogeditpost(LoginRequiredMixin, UpdateView):
+    model = Blog
+    form_class = BlogCreateForm
+    template_name = 'blog-edit-post.html'
+    slug_field = 'URL_Name'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.updated_at = timezone.now()
+        self.object.save()
+        return redirect('blogmypostlist')
+
+    def get_context_data(self, **kwargs):
+        context = super(blogeditpost, self).get_context_data(**kwargs)
+        context['URL_Name'] = self.get_object().URL_Name # <-- Now this works perfectly
+        return context
+
+
+class blogdeletepost(LoginRequiredMixin, DeleteView):
+    model = Blog
+    slug_field = 'URL_Name'
+    success_url = reverse_lazy('blogmypostlist')
+
+
+
+
+
+
