@@ -27,7 +27,7 @@ SECRET_KEY = 'd%^_#&_e=iwoh-2r2-%8i0kg)!jremsun0&qz)du7k926milro'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 MESSAGE_LEVEL = 10  # DEBUG
 #MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'rest_framework',
     'widget_tweaks',
@@ -155,14 +156,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-                        os.path.join(BASE_DIR, 'static'),
-                    ]
+#STATICFILES_DIRS = [
+#                        os.path.join(BASE_DIR, 'static'),
+#                    ]
 
 
-LOGIN_URL = "newlogin"
-LOGOUT_REDIRECT_URL = 'newlogin'
-LOGIN_REDIRECT_URL = 'aarya'
+LOGIN_URL = "bloglogin"
+LOGOUT_REDIRECT_URL = 'bloglogin'
+LOGIN_REDIRECT_URL = 'blogpostlist'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

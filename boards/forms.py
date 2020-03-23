@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from .models import Topic, Associate, Dependant, Client
+from .models import Topic, Associate, Dependant, Client, Blog
 
 class NewTopicForm(forms.ModelForm):
     message = forms.CharField(
@@ -86,4 +86,14 @@ class NewClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ['Name', 'Address_Line_1', 'Address_Line_2', 'City', 'State', 'Pin_Code']
+
+
+
+class BlogCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Blog
+        fields = ['Title', 'URL_Name', 'Details']
+
+
 

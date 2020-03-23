@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Golden Snitch - Blog</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="/static/assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="{% url 'blogpostlist' %}">Golden Snitch</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'blogpostlist' %}">Blog</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'blogcreatepost' %}">Create post</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page blog-post-list">
+        <section class="clean-block clean-blog-list dark" style="padding: 10px 0px 10px;">
+            <div class="container">
+                <div class="block-content" style="padding: 20px;">
+
+
+                    <div class="clean-blog-post">
+                        {% for blogpost in blogposts %}
+                        <div class="row">
+                            <div class="col-lg-5"><img class="rounded img-fluid" src="/static/assets/img/tech/image4.jpg"></div>
+                            <div class="col-lg-7">
+                                <h3>{{ blogpost.Title }}</h3>
+                                <div class="info"><span class="text-muted">{{ blogpost.created_at|naturaltime }} by&nbsp;<a href="#">{{ blogpost.created_by }}</a></span></div>
+                                <p>{{ blogpost.Details|truncatewords:20 }}</p>
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3"><a href="{% url 'blogpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">Read More</a></div>
+                                    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3"><a href="{% url 'blogeditpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">Edit Post</a></div>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+
+
+                    {% if blogposts.has_other_pages %}
+                    <div class="justify-content-center clean-blog-post">
+                        <div class="row justify-content-center align-content-center">
+                            <div class="col-lg-5 justify-content-center align-self-center">
+                                <nav class="text-center justify-content-center">
+
+                                    <ul class="pagination">
+                                        {% if blogposts.has_previous %}
+                                        <li class="page-item"><a class="page-link" 
+                                            href="?page={{ blogposts.previous_page_number }}  {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                        {% else %}
+                                        <li class="page-item disabled"><a class="page-link">«</a></li>
+                                        {% endif %}
+
+
+
+                                        {% for i in blogposts.paginator.page_range %}
+                                        {% if blogposts.number == i %}
+                                        <li class="page-item"><a class="page-link active">{{ i }}</a></li>
+                                        {% else %}
+                                        <li><a class="page-link" href="?page={{ i }}
+                                        {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        
+
+
+                                        {% if blogposts.has_next %}
+                                        <li class="page-item"><a class="page-link" 
+                                            href="?page={{ blogposts.next_page_number }}   {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                        {% else %}
+                                        <li class="page-item disabled"><a class="page-link">»</a></li>
+                                        {% endif %}
+                                    </ul>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="/static/assets/js/smoothproducts.min.js"></script>
+    <script src="/static/assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script type="text/javascript">
+        var simplemde = new SimpleMDE();
+    </script>
+</body>
+
+</html>

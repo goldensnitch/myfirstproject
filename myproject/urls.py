@@ -43,7 +43,7 @@ urlpatterns = [
 
 
 
-   url(r'^$', auth_views.LoginView.as_view(template_name='newlogin.html'), name='newhome'),
+   url(r'^$', auth_views.LoginView.as_view(template_name='blog-login.html'), name='bloglogin'),
    url(r'^signup/$', accounts_views.signup, name='signup'),
 
    url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -113,6 +113,16 @@ urlpatterns = [
 
 
    url(r'^admin/', admin.site.urls),
+
+   url(r'^blog/login/$', auth_views.LoginView.as_view(template_name='blog-login.html'), name='bloglogin'),
+   url(r'^blog/registration/$', accounts_views.blogregistration, name='blogregistration'),
+   url(r'^blog/$', views.blogpostlist, name='blogpostlist'),
+   url(r'^blog/my-posts/$', views.blogmypostlist, name='blogmypostlist'),
+   url(r'^blog/create-post/$', views.blogcreatepost, name='blogcreatepost'),
+   url(r'^blog/edit-post/(?P<slug>[-\w]+)/$', views.blogeditpost.as_view(), name='blogeditpost'),
+   url(r'^blog/delete-post/(?P<slug>[-\w]+)/$', views.blogdeletepost.as_view(), name='blogdeletepost'),
+   url(r'^blog/post/(?P<slug>[-\w]+)/$', views.blogpost, name='blogpost'),
+
 
 
 ]

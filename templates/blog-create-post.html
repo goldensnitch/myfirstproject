@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% load form_tags %}
+{% load form_tags widget_tweaks %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Golden Snitch - Create Post</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="/static/assets/css/smoothproducts.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="{% url 'blogpostlist' %}">Golden Snitch</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'blogpostlist' %}">Blog</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'blogmypostlist' %}">MY POSTS</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page contact-us-page">
+        <section class="clean-block clean-form dark">
+            <div class="container" style="padding: 0px 15px;">
+                <div class="block-heading">
+                    <h2 class="text-info">Create a New Post</h2>
+                </div>
+                <div class="col-12 text-truncate" style="background-color: #ffffff;padding: 10px;margin: 5;">
+                    <form method="post" novalidate class="d-inline" style="margin: auto;padding: 0px;">
+                        {% csrf_token %}
+                        <div class="form-group"><label>Title</label>{% render_field form.Title class=form.Title|input_class %}
+                        {% if form.Title.errors %} 
+                        <div class="d-flex justify-content-center small font-italic links">{{ form.Title.errors }}</div>
+                        {% endif %}
+                        </div>
+
+                        <div class="form-group"><label>URL Name</label>{% render_field form.URL_Name class=form.URL_Name|input_class %}
+                        {% if form.URL_Name.errors %} 
+                        <div class="d-flex justify-content-center small font-italic links">{{ form.URL_Name.errors }}</div>
+                        {% endif %}
+                        </div>
+
+                        <div class="form-group"><label>Details</label>{% render_field form.Details class=form.Details|input_class %}
+                        {% if form.Details.errors %} 
+                        <div class="d-flex justify-content-center small font-italic links">{{ form.Details.errors }}</div>
+                        {% endif %}
+                        </div>
+                        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Create Post</button></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="/static/assets/js/smoothproducts.min.js"></script>
+    <script src="/static/assets/js/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script type="text/javascript">
+        var simplemde = new SimpleMDE();
+    </script>
+</body>
+
+</html>
