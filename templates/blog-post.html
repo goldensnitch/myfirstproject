@@ -35,11 +35,11 @@
         <section class="clean-block clean-post dark" style="padding: 20px 0px 20px;">
             <div class="container">
                 <div class="block-content">
-                    <div class="post-image" style="background-image:url(&quot;/static/assets/img/scenery/image3.jpg&quot;);"></div>
+
                     <div class="post-body" style="padding: 20px 20px;">
                         <h3>{{ post.Title }}</h3>
                         <div class="post-info"><span>By {{ post.created_by }}</span><span>{{ post.created_at|naturaltime }}</span></div>
-                        {{ post.get_Details_as_markdown }}
+                        {{ post.Content|safe }}
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
     <script src="/static/assets/js/theme.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script type="text/javascript">
-        var simplemde = new SimpleMDE();
+        
     </script>
 </body>
 

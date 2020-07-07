@@ -8,6 +8,10 @@ from markdown import markdown
 
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+
+from tinymce import HTMLField
+
+
 User = get_user_model()
 
 
@@ -125,13 +129,17 @@ class Request(models.Model):
 
 class Blog(models.Model):
     Title = models.CharField(max_length=200, unique=True, blank=False)
-    Details = models.TextField(max_length=4000, blank=False)
+    Details = models.TextField(max_length=4000, blank=True)
     URL_Name = models.SlugField(max_length=200, unique=True, blank=False)
+    Content = HTMLField('Content', default='test', blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name= 'blogs',on_delete=models.DO_NOTHING)
     def get_Details_as_markdown(self):
         return mark_safe(markdown(self.Details, safe_mode='escape'))
+
+    def __str__(self):
+        return self.created_by.username + ' - ' + self.Title
 
 
 

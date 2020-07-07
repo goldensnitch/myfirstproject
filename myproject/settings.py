@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'widget_tweaks',
     'crispy_forms',
+    'tinymce',
     'accounts',
     'boards'
 

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="/static/assets/css/smoothproducts.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    {{ form.media }}
 </head>
 
 <body>
@@ -52,9 +53,9 @@
                         {% endif %}
                         </div>
 
-                        <div class="form-group"><label>Details</label>{% render_field form.Details class=form.Details|input_class %}
-                        {% if form.Details.errors %} 
-                        <div class="d-flex justify-content-center small font-italic links">{{ form.Details.errors }}</div>
+                        <div class="form-group"><label>Content</label>{% render_field form.Content class=form.Content|input_class %}
+                        {% if form.Content.errors %} 
+                        <div class="d-flex justify-content-center small font-italic links">{{ form.Content.errors }}</div>
                         {% endif %}
                         </div>
                         <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Update Post</button></div>
@@ -80,7 +81,7 @@
     <script src="/static/assets/js/theme.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script type="text/javascript">
-        var simplemde = new SimpleMDE();
+
     </script>
 </body>
 
