@@ -50,6 +50,7 @@
                                     </div>
                                 <p class="card-text">{{ blogpost.Content| safe | truncatewords:25 }}</p>
                                 <a href="{% url 'blogpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                                <a href="{% url 'blogeditpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">&nbsp;Edit Post</a>
                                 </div>
                             </div>
                         </div>
