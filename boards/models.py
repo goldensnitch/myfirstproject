@@ -135,4 +135,21 @@ class Blog(models.Model):
 
 
 
+class Timesheet(models.Model):
+    Details = models.CharField(max_length=100, blank=False)
+    Hours = models.DecimalField(max_digits=4, decimal_places=2, blank=False)
+    Date = models.DateField(blank=False)
+    Associate = models.ForeignKey(Associate, on_delete=models.CASCADE, related_name='Timesheets')
+    def __str__(self):
+        return self.Associate.First_Name + ' ' + self.Associate.Last_Name + ' - ' + self.Details
+
+    class Meta:
+        unique_together = (('Associate', 'Date'),)
+        index_together = (('Associate', 'Date'),)
+
+
+
+
+
+
 
