@@ -40,14 +40,21 @@
 
                     <div class="clean-blog-post">
                         {% for blogpost in blogposts %}
-                        <div class="row">
-                            <div class="col-lg-5"><img class="rounded img-fluid" src="/static/assets/img/tech/image4.jpg"></div>
-                            <div class="col-lg-7">
-                                <h3>{{ blogpost.Title }}</h3>
-                                <div class="info"><span class="text-muted">{{ blogpost.created_at|naturaltime }} by&nbsp;<a href="#">{{ blogpost.created_by }}</a></span></div>
-                                <p>{{ blogpost.Details|truncatewords:20 }}</p>
+
+                        <div class="card">
+                            <div class="card-body">
+                            <img src="/static/assets/img/tech/avatar-small.png" class="float-left rounded-circle">
+                                <div class="message">
+                                <h3 class="card-title">&nbsp;&nbsp;&nbsp;{{ blogpost.Title }}</h3>
+                                    <div class="info"><span class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;{{ blogpost.created_at|naturaltime }} by&nbsp;<a href="#">{{blogpost.created_by }}</a></span>
+                                    </div>
+                                <p class="card-text">{{ blogpost.Content| safe | truncatewords:25 }}</p>
                                 <a href="{% url 'blogpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                         </div>
                         <br>
                         {% endfor %}
@@ -105,7 +112,7 @@
     <script src="/static/assets/js/theme.js"></script>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script type="text/javascript">
-        var simplemde = new SimpleMDE();
+        
     </script>
 </body>
 

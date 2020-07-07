@@ -29,6 +29,7 @@ from django.urls import include
 from rest_framework import routers
 from boards.boards_api import AssociateViewSet, UserViewSet, GroupViewSet, TimesheetViewSet
 from rest_framework.authtoken.views import obtain_auth_token
+from tinymce import urls
 
 
 router=routers.DefaultRouter()
@@ -45,7 +46,7 @@ urlpatterns = [
    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
    path('api-authtoken/', obtain_auth_token),
 
-
+   path('tinymce/', include('tinymce.urls')),
 
    url(r'^$', auth_views.LoginView.as_view(template_name='blog-login.html'), name='bloglogin'),
    url(r'^signup/$', accounts_views.signup, name='signup'),
