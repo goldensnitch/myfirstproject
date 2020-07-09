@@ -25,8 +25,10 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'blogmypostlist' %}">MY POSTS</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'blogcreatepost' %}">Create post</a></li>
-                    {% endif %}
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'logout' %}">Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -38,7 +40,7 @@
 
                     <div class="post-body" style="padding: 20px 20px;">
                         <h3>{{ post.Title }}</h3>
-                        <div class="post-info"><span>By {{ post.created_by }}</span><span>{{ post.created_at|naturaltime }}</span></div>
+                        <div class="post-info"><span>By {{ post.created_by }}</span><span>{{ post.created_at|naturaltime }}</span><span>{{ post.Views }} views</span></div>
                         {{ post.Content|safe }}
                     </div>
                 </div>

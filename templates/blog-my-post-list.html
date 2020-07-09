@@ -45,10 +45,12 @@
                             <div class="card-body">
                             <img src="/static/assets/img/tech/avatar-small.png" class="float-left rounded-circle">
                                 <div class="message">
-                                <h3 class="card-title">&nbsp;&nbsp;&nbsp;{{ blogpost.Title }}</h3>
+                                <h3>
+                                &nbsp;&nbsp;&nbsp;<a href="{% url 'blogpost' blogpost.URL_Name %}" class="card-title">{{ blogpost.Title }}</a>
+                                </h3>
                                     <div class="info"><span class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;{{ blogpost.created_at|naturaltime }} by&nbsp;<a href="#">{{blogpost.created_by }}</a></span>
                                     </div>
-                                <p class="card-text">{{ blogpost.Content| safe | truncatewords:25 }}</p>
+                                <p class="card-text">{{ blogpost.Content| safe | truncatewords:25 | striptags }}</p>
                                 <a href="{% url 'blogpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">Read More</a>
                                 <a href="{% url 'blogeditpost' blogpost.URL_Name %}" class="btn btn-outline-primary btn-sm">&nbsp;Edit Post</a>
                                 </div>

@@ -46,6 +46,7 @@ from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.messages.views import SuccessMessageMixin
 
+from django.core.exceptions import PermissionDenied
 
 User = get_user_model()
 
@@ -436,6 +437,8 @@ def blogpostlist(request):
 
 def blogpost(request, slug):
     post = get_object_or_404 (Blog, URL_Name=slug)
+    post.Views += 1
+    post.save()
     return render(request, 'blog-post.html', {'post':post})
 
 
@@ -465,10 +468,13 @@ class blogeditpost(LoginRequiredMixin, UpdateView):
     slug_field = 'URL_Name'
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.updated_at = timezone.now()
-        self.object.save()
-        return redirect('blogmypostlist')
+        if self.request.user == self.object.created_by:
+            self.object = form.save(commit=False)
+            self.object.updated_at = timezone.now()
+            self.object.save()
+            return redirect('blogmypostlist')
+        else:
+            raise PermissionDenied()
 
     def get_context_data(self, **kwargs):
         context = super(blogeditpost, self).get_context_data(**kwargs)
@@ -480,6 +486,14 @@ class blogdeletepost(LoginRequiredMixin, DeleteView):
     model = Blog
     slug_field = 'URL_Name'
     success_url = reverse_lazy('blogmypostlist')
+
+
+
+
+
+
+
+
 
 
 
