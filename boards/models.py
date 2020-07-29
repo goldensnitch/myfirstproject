@@ -140,6 +140,19 @@ class Blog(models.Model):
         return self.created_by.username + ' - ' + self.Title
 
 
+class BlogComment(models.Model):
+    Comment = models.CharField(max_length=2000, unique=True, blank=False)
+    Blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blogcomments')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(null=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name= 'blogcomments',on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.created_by.username + ' - ' + self.Comment
+
+
+
+
 
 class Timesheet(models.Model):
     Details = models.CharField(max_length=100, blank=False)

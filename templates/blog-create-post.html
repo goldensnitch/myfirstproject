@@ -47,12 +47,6 @@
                         {% endif %}
                         </div>
 
-                        <div class="form-group"><label>URL Name</label>{% render_field form.URL_Name class=form.URL_Name|input_class %}
-                        {% if form.URL_Name.errors %} 
-                        <div class="d-flex justify-content-center small font-italic links">{{ form.URL_Name.errors }}</div>
-                        {% endif %}
-                        </div>
-
                         <div class="form-group"><label>Content</label>{% render_field form.Content class=form.Content|input_class %}
                         {% if form.Content.errors %} 
                         <div class="d-flex justify-content-center small font-italic links">{{ form.Content.errors }}</div>

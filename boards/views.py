@@ -9,11 +9,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404, HttpResponseRedirect
 
-from .models import Board, Topic, Post, Associate, Dependant, Client, Blog
+from .models import Board, Topic, Post, Associate, Dependant, Client, Blog, BlogComment
 from django.utils import timezone
 from .forms import NewTopicForm, NewAssociateForm, AssociateDetailsForm
 from .forms import PersonalInfoForm, ContactInfoForm, IDProofInfoForm, DependantInfoForm
-from .forms import NewClientForm, BlogCreateForm
+from .forms import NewClientForm, BlogCreateForm, BlogEditForm, BlogCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -47,6 +47,10 @@ from django.template import RequestContext
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.core.exceptions import PermissionDenied
+
+from slugify import slugify
+
+
 
 User = get_user_model()
 
@@ -409,12 +413,40 @@ def blogcreatepost(request):
             Blog.created_by  = request.user
             Blog.created_at = timezone.now()
             Blog.updated_at = timezone.now()
+            Blog.URL_Name = slugify(Blog.Title) 
             Blog.save()
 
             return redirect('blogmypostlist')
     else:
         form = BlogCreateForm()
     return render(request, 'blog-create-post.html', {'form': form})
+
+
+
+
+def blogpost(request, slug):
+    post = get_object_or_404 (Blog, URL_Name=slug)
+    post.Views +=1
+    post.save()
+    blogcomments = BlogComment.objects.filter( Q(Blog=post)).order_by('-created_at')
+
+    form = BlogCommentForm()
+    if request.method == 'POST':
+        form = BlogCommentForm(request.POST)
+        if form.is_valid():
+            BlogCommentD = form.save(commit=False)
+            BlogCommentD.Blog = post
+            BlogCommentD.created_by  = request.user
+            BlogCommentD.created_at = timezone.now()
+            BlogCommentD.updated_at = timezone.now()
+            BlogCommentD.save()
+
+            return redirect('blogpost', slug=post.URL_Name  )
+    else:
+        form = BlogCommentForm()
+
+    return render(request, 'blog-post.html', {'post':post, 'blogcomments':blogcomments, 'form':form} )
+
 
 
 def blogpostlist(request):
@@ -434,12 +466,6 @@ def blogpostlist(request):
         blogposts = paginator.page(paginator.num_pages)
     return render(request, 'blog-post-list.html', {'blogposts': blogposts})
 
-
-def blogpost(request, slug):
-    post = get_object_or_404 (Blog, URL_Name=slug)
-    post.Views += 1
-    post.save()
-    return render(request, 'blog-post.html', {'post':post})
 
 
 @login_required
@@ -463,7 +489,7 @@ def blogmypostlist(request):
 
 class blogeditpost(LoginRequiredMixin, UpdateView):
     model = Blog
-    form_class = BlogCreateForm
+    form_class = BlogEditForm
     template_name = 'blog-edit-post.html'
     slug_field = 'URL_Name'
 

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from .models import Topic, Associate, Dependant, Client, Blog
+from .models import Topic, Associate, Dependant, Client, Blog, BlogComment
 
 class NewTopicForm(forms.ModelForm):
     message = forms.CharField(
@@ -93,9 +93,22 @@ class BlogCreateForm(forms.ModelForm):
 
     class Meta:
         model = Blog
+        fields = ['Title', 'Content']
+
+
+class BlogEditForm(forms.ModelForm):
+
+    class Meta:
+        model = Blog
         fields = ['Title', 'URL_Name', 'Content']
 
 
+class BlogCommentForm(forms.ModelForm):
+    Comment = forms.CharField(widget=forms.Textarea(attrs={'rows':5, }))
+
+    class Meta:
+        model = BlogComment
+        fields = ['Comment']
 
 
 

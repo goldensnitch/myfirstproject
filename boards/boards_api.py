@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
@@ -18,31 +18,14 @@ class AssociateSerializer(serializers.HyperlinkedModelSerializer):
 		fields = ['id','First_Name','Last_Name','Date_of_Birth']
 
 
+
 class AssociateViewSet(viewsets.ModelViewSet):
 	queryset = Associate.objects.all()
 	serializer_class = AssociateSerializer
 
 
 
-
-
-class TimesheetSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Timesheet
-        fields = ['id', 'Associate','Date','Details', 'Hours']
-
-
-class TimesheetViewSet(viewsets.ModelViewSet):
-    queryset = Timesheet.objects.all().order_by('Associate', '-Date')
-    serializer_class = TimesheetSerializer
-    authentication_classes = (TokenAuthentication, ) 
-    permission_classes = (IsAuthenticated, )
-
-
-
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserDetailsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', 'groups']
@@ -56,12 +39,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserDetailsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+    serializer_class = UserDetailsSerializer
 
 
 
@@ -71,4 +54,43 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+
+
+
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username','password']
+        extra_kwargs = {'password':{'write_only':True, 'required':True}}
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
+        return user
+
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+
+class TimesheetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Timesheet
+        fields = ['id', 'Associate','Date','Details', 'Hours']
+
+
+
+class TimesheetViewSet(viewsets.ModelViewSet):
+    queryset = Timesheet.objects.all().order_by('Associate', '-Date')
+    serializer_class = TimesheetSerializer
+    authentication_classes = (TokenAuthentication, ) 
+    permission_classes = (IsAuthenticated, )
+
 
