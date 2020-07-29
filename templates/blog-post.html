@@ -4,6 +4,8 @@
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
 {% load humanize %}
+{% load form_tags %}
+{% load form_tags widget_tweaks %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -37,7 +39,6 @@
         <section class="clean-block clean-post dark" style="padding: 20px 0px 20px;">
             <div class="container">
                 <div class="block-content">
-
                     <div class="post-body" style="padding: 20px 20px;">
                         <h3>{{ post.Title }}</h3>
                         <div class="post-info"><span>By {{ post.created_by }}</span><span>{{ post.created_at|naturaltime }}</span><span>{{ post.Views }} views</span></div>
@@ -46,6 +47,51 @@
                 </div>
             </div>
         </section>
+
+        <section class="clean-block clean-post dark" style="padding: 0px 0px 20px;">
+            <div class="container">
+                <div class="block-content">
+                    <div class="post-body" style="padding: 10px 20px;">
+                        <h3>Comments</h3>
+                            <div class="panel-body">
+                            <ul class="list-group">
+                                {% for blogcomment in blogcomments %}
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-xs-2 col-md-1">
+                                            <img src="/static/assets/img/tech/avatar-small.png" class="img-circle img-responsive" alt="" />
+                                        </div>
+                                        <div class="col-xs-10 col-md-11">
+                                            <div class="post-info"><span>By {{ blogcomment.created_by }}</span><span>{{ blogcomment.created_at|naturaltime }}</span></div>
+                                            <div class="comment-text">{{ blogcomment.Comment }}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            </div>
+                        
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="post-body" style="padding: 10px 20px;">
+                        <a class="btn btn-light btn-sm" data-toggle="collapse" href="#collapseAddComment" role="button" aria-expanded="false" aria-controls="collapseAddComment">Leave a comment?</a>
+                        <div class="collapse" id="collapseAddComment">
+                            <form method="post" novalidate class="d-inline" style="margin: auto;padding: 0px;">
+                            {% csrf_token %}
+                            <div class="form-group"><label> </label>{% render_field form.Comment class=form.Comment|input_class %}
+                                {% if form.Content.errors %} 
+                                <div class="d-flex justify-content-center small font-italic links">{{ form.Content.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="form-group"><button class="btn btn-secondary btn-sm" type="submit">Add Comment</button></div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
