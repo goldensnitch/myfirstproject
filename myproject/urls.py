@@ -30,6 +30,9 @@ from rest_framework import routers
 from boards.boards_api import AssociateViewSet, UserViewSet, GroupViewSet, TimesheetViewSet, UserDetailsViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 from tinymce import urls
+from avatar import urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 router=routers.DefaultRouter()
@@ -48,6 +51,8 @@ urlpatterns = [
    path('api-authtoken/', obtain_auth_token),
 
    path('tinymce/', include('tinymce.urls')),
+   path('avatar/', include('avatar.urls')),
+   url(r'^media/avatars/', include('avatar.urls')),
 
    url(r'^$', auth_views.LoginView.as_view(template_name='blog-login.html'), name='bloglogin'),
    url(r'^signup/$', accounts_views.signup, name='signup'),
@@ -128,7 +133,8 @@ urlpatterns = [
    url(r'^blog/edit-post/(?P<slug>[-\w]+)/$', views.blogeditpost.as_view(), name='blogeditpost'),
    url(r'^blog/delete-post/(?P<slug>[-\w]+)/$', views.blogdeletepost.as_view(), name='blogdeletepost'),
    url(r'^blog/post/(?P<slug>[-\w]+)/$', views.blogpost, name='blogpost'),
+   url(r'^blog/profile/(?P<slug>[-\w]+)/$', accounts_views.blogupdateprofile.as_view(), name='blogupdateprofile'),
 
 
 
-]
+]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -27,7 +27,7 @@ SECRET_KEY = 'd%^_#&_e=iwoh-2r2-%8i0kg)!jremsun0&qz)du7k926milro'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 MESSAGE_LEVEL = 10  # DEBUG
 #MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
@@ -58,11 +58,13 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
     'widget_tweaks',
     'crispy_forms',
     'tinymce',
     'accounts',
-    'boards'
+    'boards',
+    'avatar',
 
 ]
 
@@ -83,7 +85,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
 
 
 ROOT_URLCONF = 'myproject.urls'
@@ -102,6 +118,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -162,13 +179,22 @@ STATIC_URL = '/static/'
 #STATICFILES_DIRS = [
 #                        os.path.join(BASE_DIR, 'static'),
 #                    ]
-STATIC_URL = '/static/'
 if DEBUG:
    STATICFILES_DIRS = [
    os.path.join(BASE_DIR, 'static'),
    ]
 else:
    STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+
+AVATAR_CLEANUP_DELETED = True
+AVATAR_THUMB_FORMAT = "PNG"
+AVATAR_GRAVATAR_DEFAULT ='mp'
+AVATAR_MAX_SIZE = 10 * 1024 * 1024
+
 
 
 
