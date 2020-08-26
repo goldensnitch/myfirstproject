@@ -28,10 +28,10 @@ SECRET_KEY = 'd%^_#&_e=iwoh-2r2-%8i0kg)!jremsun0&qz)du7k926milro'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-<<<<<<< HEAD
 
-=======
->>>>>>> Develop
+
+
+
 
 MESSAGE_LEVEL = 10  # DEBUG
 #MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
