@@ -12,3 +12,4 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
     display_name = models.CharField(max_length=30, blank=True)
 
+

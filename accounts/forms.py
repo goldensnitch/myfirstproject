@@ -43,3 +43,5 @@ class UpdateProfileForm(forms.ModelForm):
             raise forms.ValidationError('This Display Name is already in use. Please provide a different Display Name.')
         return display_name
 
+
+
