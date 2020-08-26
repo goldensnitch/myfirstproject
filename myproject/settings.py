@@ -213,3 +213,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'goldensnitchtech@gmail.com'
 EMAIL_HOST_PASSWORD = 'goldensnitchtech@123'
 EMAIL_PORT = 587
+
+
