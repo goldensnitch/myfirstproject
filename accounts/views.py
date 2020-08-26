@@ -116,3 +116,4 @@ class blogupdateprofile(LoginRequiredMixin, UpdateView):
             return redirect('blogpostlist')
         else:
             raise PermissionDenied()
+
