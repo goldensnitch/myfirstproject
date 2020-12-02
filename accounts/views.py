@@ -110,7 +110,7 @@ class blogupdateprofile(LoginRequiredMixin, UpdateView):
     slug_field = 'username'
 
     def form_valid(self, form):
-        if self.request.user == self.object.username:
+        if self.request.user.username == self.object.username:
             self.object = form.save(commit=False)
             self.object.save()
             return redirect('blogpostlist')

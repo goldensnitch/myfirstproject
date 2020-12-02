@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Associate, Timesheet
+from .models import Associate, Timesheet, Task
 from rest_framework import viewsets
 
 from django.contrib.auth.models import Group
@@ -10,6 +10,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 
 User = get_user_model()
+
+
+
+
+
+
+
+
 
 
 class AssociateSerializer(serializers.HyperlinkedModelSerializer):
@@ -81,16 +89,34 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class TimesheetSerializer(serializers.ModelSerializer):
+    AssociateName = serializers.ReadOnlyField(source='Associate.Display_Name')
+
     class Meta:
         model = Timesheet
-        fields = ['id', 'Associate','Date','Details', 'Hours']
+        fields = ['id', 'Associate','Date','Details', 'Hours', 'AssociateName']
 
 
 
 class TimesheetViewSet(viewsets.ModelViewSet):
     queryset = Timesheet.objects.all().order_by('Associate', '-Date')
     serializer_class = TimesheetSerializer
-    authentication_classes = (TokenAuthentication, ) 
+    authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
+
+
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = '__all__'
+
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+
 
 
