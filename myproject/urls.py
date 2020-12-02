@@ -27,7 +27,7 @@ from boards.views import GeneratePDF
 
 from django.urls import include
 from rest_framework import routers
-from boards.boards_api import AssociateViewSet, UserViewSet, GroupViewSet, TimesheetViewSet, UserDetailsViewSet
+from boards.boards_api import AssociateViewSet, UserViewSet, GroupViewSet, TimesheetViewSet, UserDetailsViewSet, TaskViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 from tinymce import urls
 from avatar import urls
@@ -41,6 +41,7 @@ router.register(r'v1/userdetails', UserDetailsViewSet)
 router.register(r'v1/groups', GroupViewSet)
 router.register(r'v1/users', UserViewSet)
 router.register(r'v1/timesheets', TimesheetViewSet)
+router.register(r'v1/tasks', TaskViewSet)
 
 
 
