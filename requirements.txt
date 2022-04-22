@@ -20,7 +20,7 @@ Markdown==3.2.1
 pdfrw==0.4
 Pillow==7.0.0
 pycparser==2.18
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 Pyphen==0.9.4
 python-slugify==4.0.1
 pytz==2018.4
